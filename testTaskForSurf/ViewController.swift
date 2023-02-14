@@ -82,17 +82,17 @@ extension ViewController: UISheetPresentationControllerDelegate {
                 
         if sheetPresentationController.selectedDetentIdentifier == largeId {
             
-            sheetViewController.bottomCollectionView.isHidden = false
+            /// sheetViewController.bottomCollectionView.isHidden = false
             sheetViewController.bottomLabel.isHidden = false
             
         } else if sheetPresentationController.selectedDetentIdentifier == mediumId {
             
-            sheetViewController.bottomCollectionView.isHidden = false
+            /// sheetViewController.bottomCollectionView.isHidden = false
             sheetViewController.bottomLabel.isHidden = false
             
         } else if sheetPresentationController.selectedDetentIdentifier == smallId {
             
-            sheetViewController.bottomCollectionView.isHidden = true
+            /// sheetViewController.bottomCollectionView.isHidden = true
             sheetViewController.bottomLabel.isHidden = true
             
         }

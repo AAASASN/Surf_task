@@ -7,6 +7,23 @@
 
 import UIKit
 
+protocol InfiniteCollectionViewDataSource {
+    func cellForItemAtIndexPath(_ collectionView: UICollectionView,
+                                dequeueIndexPath: IndexPath,
+                           usableIndexPath: IndexPath) -> UICollectionViewCell
+    
+    func numberOfItems(_ collectionView: UICollectionView) -> Int
+    
+} // добавил в SheetViewController
+
+protocol InfiniteCollectionViewDelegate {
+    func didSelectCellAtIndexPath(_ collectionView: UICollectionView,
+                                   usableIndexPath: IndexPath)
+}
+
+
+
+
 class SheetViewController: UIViewController {
     
     // нижнее view, его лейбл и кнопка
@@ -23,8 +40,15 @@ class SheetViewController: UIViewController {
 
     // CollectionView
     let topCollectionView = TopCollectionView()
-    let bottomCollectionView = BottomCollectionView()
     
+    /// let bottomCollectionView = BottomCollectionView()
+
+    // Свойство для infiniteCollectionView вместо bottomCollectionView
+    var infiniteCollectionView: InfiniteCollectionView!
+    
+//    let cellItems = ["iOS", "Android", "Kotlin", "Pyton", "Java", "Flutter", "Design", "QA", "PM", "React"]
+        let cellItems = ["1", "2", "3", "4", "5", "6"]
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +64,10 @@ class SheetViewController: UIViewController {
         view.backgroundColor = .white
         
         // при начальном отображении SheetViewController нижние лейбл и CollectionView скрыты
-        bottomLabel.isHidden = true
-        bottomCollectionView.isHidden = true
+        // bottomLabel.isHidden = true
+        
+        /// bottomCollectionView.isHidden = true
+        // infiniteCollectionView.isHidden = true
         
     }
 
@@ -53,10 +79,33 @@ extension SheetViewController {
     
     // MARK: - viewsSetting()
     private func viewsSetting() {
+        
+        // Свойство для infiniteCollectionView
+        infiniteCollectionView = {
+            
+            // let flowLayout = UICollectionViewFlowLayout()
+            
+//            let infiniteCollectionView = InfiniteCollectionView(frame: CGRect(x: 100, y: 100, width: 250, height: 100))
+            
+           let infiniteCollectionView = InfiniteCollectionView(frame: .zero)
+
+//            let infiniteCollectionView = InfiniteCollectionView(frame: CGRect(x: 0, y: 0, width: 300, height: 200), collectionViewLayout: flowLayout)
+            
+            infiniteCollectionView.backgroundColor = UIColor.systemYellow
+            
+            infiniteCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellCollectionView")
+            //infiniteCollectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cellCollectionView")
+            
+            infiniteCollectionView.infiniteDataSource = self
+            infiniteCollectionView.infiniteDelegate = self
+            infiniteCollectionView.reloadData()
+            
+            return infiniteCollectionView
+            
+        }()
 
         bottomView = {
             let bottomView = UIView()
-            
             
 //            let gradient = CAGradientLayer()
 //            let whiteAlpha0 = UIColor(red: 255, green: 255, blue: 255, alpha: 0).cgColor
@@ -140,6 +189,9 @@ extension SheetViewController {
 
           return bottomLabel
       }()
+        
+        
+
 
     }
     
@@ -148,12 +200,17 @@ extension SheetViewController {
         
         view.addSubview(titleLabel)
         view.addSubview(topCollectionView)
-        view.addSubview(bottomCollectionView)
+        
+        ///view.addSubview(bottomCollectionView)
+        view.addSubview(infiniteCollectionView)
+        
         view.addSubview(topLabel)
         view.addSubview(bottomLabel)
         view.addSubview(bottomView)
         bottomView.addSubview(sendButton)
         bottomView.addSubview(labelLeftNearSendButton)
+
+
         
     }
     
@@ -167,6 +224,8 @@ extension SheetViewController {
         bottomLabel.translatesAutoresizingMaskIntoConstraints = false
         bottomView.translatesAutoresizingMaskIntoConstraints = false
                 
+        infiniteCollectionView.translatesAutoresizingMaskIntoConstraints = false
+
         
         NSLayoutConstraint.activate([
 
@@ -205,12 +264,55 @@ extension SheetViewController {
             bottomLabel.widthAnchor.constraint(equalToConstant: 335),
             bottomLabel.topAnchor.constraint(equalTo: topCollectionView.bottomAnchor, constant: 24),
             
-            bottomCollectionView.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 12),
-            bottomCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            bottomCollectionView.heightAnchor.constraint(equalToConstant: 100),
-            bottomCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+//            bottomCollectionView.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 12),
+//            bottomCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+//            bottomCollectionView.heightAnchor.constraint(equalToConstant: 100),
+//            bottomCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            
+            infiniteCollectionView.topAnchor.constraint(equalTo: bottomLabel.bottomAnchor, constant: 12),
+            infiniteCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            infiniteCollectionView.heightAnchor.constraint(equalToConstant: 60),
+            infiniteCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
+            
+//            infiniteCollectionView.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0),
+//            infiniteCollectionView.leftAnchor.constraint(equalTo: bottomView.leftAnchor, constant: 0),
+//            infiniteCollectionView.rightAnchor.constraint(equalTo: bottomView.rightAnchor, constant: 0),
+//            infiniteCollectionView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0),
+
+            
         ])
         
     }
     
 }
+
+// MARK: - расширение под протоколы InfiniteCollectionViewDataSource InfiniteCollectionViewDelegate
+extension SheetViewController: InfiniteCollectionViewDataSource {
+    
+    func numberOfItems(_ collectionView: UICollectionView) -> Int {
+        return cellItems.count
+    }
+    
+    func cellForItemAtIndexPath(_ collectionView: UICollectionView, dequeueIndexPath: IndexPath, usableIndexPath: IndexPath)  -> UICollectionViewCell {
+        let cell = infiniteCollectionView.dequeueReusableCell(withReuseIdentifier: "cellCollectionView", for: dequeueIndexPath) as! CollectionViewCell
+        
+//        cell.lbTitle.text = cellItems[usableIndexPath.row]
+        cell.streamTitle.text = cellItems[usableIndexPath.row]
+        
+//        cell.lbTitle.textColor = .white
+        cell.streamTitle.textColor = .white
+        
+//        cell.lbTitle.font = .systemFont(ofSize: 36)
+        cell.streamTitle.font = .systemFont(ofSize: 36)
+        
+//        cell.backgroundImage.backgroundColor = .systemRed
+
+        return cell
+    }
+} // добавил в SheetViewController
+
+extension SheetViewController: InfiniteCollectionViewDelegate {
+    func didSelectCellAtIndexPath(_ collectionView: UICollectionView, usableIndexPath: IndexPath) {
+        print("\(cellItems[usableIndexPath.row])")
+    }
+}  // добавил SheetViewController
