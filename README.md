@@ -1,6 +1,6 @@
 ## Тестовое задание Мараенко Александра на стажировку в Surf
 
-<img width="512" alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/topBanner.png?raw=true" >
+<img width="512" alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/topBanner.png?raw=true" alt="Задана ширина" width="400">
 
 ### Что нужно сделать?
 
@@ -31,11 +31,11 @@
 - Скроллить можно только контент, картинка при этом статична. Контент может скроллится вплоть до статус бара;
 - В дополнительной карусели добавить возможность скроллить контент, если на экран не поместились все элементы, которые в нее добавлены. Количество рядов должно остаться так же равным двум. Скроллится должны сразу оба ряда, а не по отдельности.
 
-<img width="512" alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%201.gif" alt="Задана ширина" width="195">
+![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%201.gif)
+![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%202.gif)
+![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%203.gif)
 
-<img width="512" alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%202.gif" >
 
-<img width="512" alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%203.gif" >
 
 #### Решение
 
