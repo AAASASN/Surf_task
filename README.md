@@ -1,6 +1,6 @@
 ## Тестовое задание Мараенко Александра на стажировку в Surf
 
-<img alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/topBanner.png?raw=true">
+<img alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/topBanner-1.jpg?raw=true">
 
 ### Что нужно сделать?
 
