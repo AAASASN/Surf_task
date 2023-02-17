@@ -1,10 +1,12 @@
-## Тестовое задание Мараенко Александра на стажировку в Surf
+## Тестовое задание Мараенко Александра на стажировку в Surf.ru
 
 <img alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/topBanner-1.jpg?raw=true">
 
 ### Что нужно сделать?
 
 Необходимо сверстать экран, чтобы он полностью повторял [дизайн](https://www.figma.com/file/S4ucVLUHYc0vLg2p1Xnart/IOS-%D1%81%D1%82%D0%B0%D0%B6%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0?node-id=45%3A77&t=N4eUtEGJu7LxSAnC-1). 
+
+<img alt="github-banner" src="https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Figma.jpg?raw=true">
 
 Помимо верстки на UIKit, нет никаких ограничений в выборе способов реализации данной задачи. 
 
