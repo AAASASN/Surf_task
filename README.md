@@ -23,7 +23,6 @@
 ![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%201.gif)
 ![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%202.gif)
 ![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%203.gif)
-![gif](https://github.com/AAASASN/testTaskForSurf/blob/main/ImagesForReadme/Simulator%20Screen%20Recording%20-%20iPhone%2014%20-%203.gif)
 
 
 ### Работы ведутся
